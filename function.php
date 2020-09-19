@@ -1,5 +1,5 @@
 <?php
-$API_KEY_TOKEN = 'IBQTT7811MYYGPYU4NQ2RK7U6DQACAAJBG';
+$API_KEY_TOKEN = 'YourAPIToken';
 
 function cls()                                                                                                             
 {
