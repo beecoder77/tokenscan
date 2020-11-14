@@ -12,6 +12,7 @@ function checkAddressETH(){
     foreach(explode(PHP_EOL, file_get_contents('address.txt')) as $value){
         $check = getAddressETH($value);
         if($check === 'OK'){
+            fwrite(fopen("etherscan_wallet.txt", "a+"), 'LIVE|'.$value."\n");
             echo 'LIVE|'.$value."\n";
         } elseif ($check === 'No transactions found'){
             echo 'DIE|'.$value."\n";
@@ -28,7 +29,9 @@ function checkBalanceETH(){
         if($result['balance'] === '0'){
             echo 'DIE|'.$result['account']."\n";
         } else {
-            echo 'LIVE|'.$result['account']."  => BALANCE =".$result['balance']."\n";
+            $balance = $result['balance'] / 1000000000000000000;
+            fwrite(fopen("etherscan_balance.txt", "a+"), 'LIVE|'.$result['account']."  => BALANCE = ".$balance."\n");
+            echo 'LIVE|'.$result['account']."  => BALANCE = ".$balance."\n";
         }
     };
 }
@@ -89,6 +92,8 @@ function checkBalanceBSC(){
         } elseif($check === '0'){
             echo 'DIE|'.$address.'|BALANCE = '.$check."\n";
         } else {
+            $check = $check / 1000000000000000000;
+            fwrite(fopen("bsc.txt", "a+"), 'LIVE|'.$address.'|BALANCE = '.$check."\n");
             echo 'LIVE|'.$address.'|BALANCE = '.$check."\n";
         }
     }
