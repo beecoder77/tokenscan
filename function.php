@@ -1,5 +1,5 @@
 <?php
-$API_KEY_TOKEN = 'TOKENMU';
+$API_KEY_TOKEN = 'YourAPIToken';
 
 function cls()                                                                                                             
 {
